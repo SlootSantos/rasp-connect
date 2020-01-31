@@ -3,10 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
-	"math/big"
 	"os"
-	"time"
 
 	"github.com/SlootSantos/rasp-connect/command"
 	"github.com/SlootSantos/rasp-connect/config"
@@ -19,11 +16,6 @@ const fullArgLength = 3
 const minArgLength = 2
 
 func main() {
-	start := time.Now()
-
-	r := new(big.Int)
-	fmt.Println(r.Binomial(1000, 10))
-
 	command, piDevice, err := parseArguments()
 	if err != nil {
 		grace(err)
@@ -33,9 +25,6 @@ func main() {
 	if err != nil {
 		grace(err)
 	}
-
-	elapsed := time.Since(start)
-	log.Printf("Binomial took %s", elapsed)
 }
 
 func parseArguments() (command.Executable, *device.Pi, error) {
